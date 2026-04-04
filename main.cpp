@@ -127,6 +127,42 @@ Tensor Tensor::apply(const TensorTransform &t) const {
   return t.apply(*this);
 }
 
+//implementacion de operadores
+Tensor Tensor::operator+(const Tensor& other) const {
+  if (shape != other.shape) throw std::invalid_argument("Incompatibles");
+  int tot = 1;
+  for (size_t i = 0; i < shape.size(); i++) tot *= shape[i];
+  vector<double> result(tot);
+  for (int i = 0; i < tot; i++) result[i] = values[i] + other.values[i];
+  return Tensor(shape, result);
+}
+
+Tensor Tensor::operator-(const Tensor& other) const {
+  if (shape != other.shape) throw std::invalid_argument("Incompatibles");
+  int tot = 1;
+  for (size_t i = 0; i < shape.size(); i++) tot *= shape[i];
+  vector<double> result(tot);
+  for (int i = 0; i < tot; i++) result[i] = values[i] - other.values[i];
+  return Tensor(shape, result);
+}
+
+Tensor Tensor::operator*(const Tensor& other) const {
+  if (shape != other.shape) throw std::invalid_argument("Incompatibles");
+  int tot = 1;
+  for (size_t i = 0; i < shape.size(); i++) tot *= shape[i];
+  vector<double> result(tot);
+  for (int i = 0; i < tot; i++) result[i] = values[i] * other.values[i];
+  return Tensor(shape, result);
+}
+
+Tensor Tensor::operator*(double scalar) const {
+  int tot = 1;
+  for (size_t i = 0; i < shape.size(); i++) tot *= shape[i];
+  vector<double> result(tot);
+  for (int i = 0; i < tot; i++) result[i] = values[i] * scalar;
+  return Tensor(shape, result);
+}
+
 int main() {
   return 0;
 }
