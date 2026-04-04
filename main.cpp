@@ -259,7 +259,6 @@ Tensor matmul(const Tensor& A, const Tensor& B) {
   return Tensor({(size_t)f1, (size_t)c2}, result);
 }
 
-
 int main() {
   Tensor T = Tensor::random({1000, 20, 20}, 0.0, 1.0);
   Tensor T_trans = T.view({1000, 400});
@@ -291,9 +290,5 @@ int main() {
   Tensor A2({1000, 10}, temp2);
   Sigmoid sigmoid;
   Tensor output = A2.apply(sigmoid);
-  return 0;
-}
-
-int main() {
   return 0;
 }
