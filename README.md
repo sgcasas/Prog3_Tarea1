@@ -1,10 +1,11 @@
-## Prog3_Tarea1
+# Prog3_Tarea1
 
-# Integrantes:
+## Integrantes:
 - Sebastian Casas Matos
 - Enzo Calderon Soto
 
-# Red Neuronal
+## Red Neuronal
 
-El objetivo del proyecto es crear una red neuronal a través de Tensores creados con los atributos tamaño y dimensión.
+Inspirados en librerias como Numpy y PyTorch, el objetivo del proyecto es implementar una libreria llamada Tensor para recrear una red neuronal 
+  
 
