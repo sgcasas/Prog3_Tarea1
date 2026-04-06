@@ -7,9 +7,19 @@ using namespace std;
 class TensorTransform;
 
 class Tensor {
+  Tensor operator+(const Tensor& other) const;
+  Tensor operator-(const Tensor& other) const;
+  Tensor operator*(const Tensor& other) const;
+  Tensor operator*(double scalar) const;
+
+  static Tensor concat(const vector<Tensor>& tensors, size_t dim);
+  friend Tensor dot(const Tensor& a, const Tensor& b);
+  friend Tensor matmul(const Tensor& a, const Tensor& b);
   vector<size_t> shape;
   double* values;
 public:
+  Tensor view(const vector<size_t>& newshape) const;
+  Tensor unsqueeze(size_t dim) const;
   //constructor
   Tensor(const vector<size_t>& s, const vector<double>& v) {
     shape = s;
@@ -191,7 +201,6 @@ Tensor Tensor::unsqueeze(size_t dim) const {
 }
 
 //Concatenacion
-
 Tensor Tensor::concat(const vector<Tensor>& tensors, size_t dim) {
   if (tensors.empty()) throw std::invalid_argument("Lista vacía");
   vector<size_t> shapebase = tensors[0].shape;
@@ -223,7 +232,6 @@ Tensor Tensor::concat(const vector<Tensor>& tensors, size_t dim) {
 }
 
 //Funciones amigas
-
 Tensor dot(const Tensor& a, const Tensor& b) {
   vector<size_t> shapeA = a.getShape();
   vector<size_t> shapeB = b.getShape();
