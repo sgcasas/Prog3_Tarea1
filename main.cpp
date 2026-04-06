@@ -7,17 +7,16 @@ using namespace std;
 class TensorTransform;
 
 class Tensor {
-  Tensor operator+(const Tensor& other) const;
-  Tensor operator-(const Tensor& other) const;
-  Tensor operator*(const Tensor& other) const;
-  Tensor operator*(double scalar) const;
-
-  static Tensor concat(const vector<Tensor>& tensors, size_t dim);
   friend Tensor dot(const Tensor& a, const Tensor& b);
   friend Tensor matmul(const Tensor& a, const Tensor& b);
   vector<size_t> shape;
   double* values;
 public:
+  Tensor operator+(const Tensor& other) const;
+  Tensor operator-(const Tensor& other) const;
+  Tensor operator*(const Tensor& other) const;
+  Tensor operator*(double scalar) const;
+  static Tensor concat(const vector<Tensor>& tensors, size_t dim);
   Tensor view(const vector<size_t>& newshape) const;
   Tensor unsqueeze(size_t dim) const;
   //constructor
